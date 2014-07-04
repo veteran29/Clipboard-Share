@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 
 public class Main extends Activity {
@@ -34,10 +35,15 @@ public class Main extends Activity {
         builder.setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_menu_share)
                     .setShowWhen(false)
-                    .setPriority(Notification.PRIORITY_MIN)
                     .setOngoing(true)
                     .setContentTitle( res.getText(R.string.notif_title) )
                     .setContentText( res.getText(R.string.notif_text) );
+        
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
+        {
+        	builder.setPriority(Notification.PRIORITY_MIN);
+        }
+        
         Notification n = builder.build();
 
         nm.notify(01, n);
