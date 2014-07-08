@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 public class Main extends Activity {
     @Override
@@ -34,7 +35,6 @@ public class Main extends Activity {
 
         builder.setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_menu_share)
-                    .setShowWhen(false)
                     .setOngoing(true)
                     .setContentTitle( res.getText(R.string.notif_title) )
                     .setContentText( res.getText(R.string.notif_text) );
@@ -42,6 +42,16 @@ public class Main extends Activity {
         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
         {
         	builder.setPriority(Notification.PRIORITY_MIN);
+        	
+        	if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1)
+        	{
+        		Log.d("Clip Board Share", "API is equal or above 17");
+        		builder.setShowWhen(false);
+        	}
+        	else
+        	{
+        		builder.setWhen(0);
+        	}
         }
         
         Notification n = builder.build();
