@@ -1,0 +1,59 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.veteran29.clipboardshare"
+    android:versionCode="1"
+    android:versionName="1.1" >
+
+    <uses-sdk android:minSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Cliboard Share">
+        
+         <receiver android:enabled="true" android:exported="true" 
+		    android:name="com.veteran29.clipboardshare.Startup"
+		    android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+		    <intent-filter>
+		        <action android:name="android.intent.action.BOOT_COMPLETED" />
+		        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+				<category android:name="android.intent.category.DEFAULT" />
+		    </intent-filter>
+	    </receiver>
+        
+		<activity
+	    	android:name=".Main"
+	        android:label="Share Clipboard"
+	        android:excludeFromRecents="true"
+	        android:launchMode="singleTop"
+	        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+	    </activity>
+
+        <activity
+            android:name=".Launcher"
+            android:label="Share Clipboard"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+	    
+		<activity
+            android:name=".Share"
+            android:label="Share Clipboard Share Activity"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+		
+    </application>
+
+</manifest>
